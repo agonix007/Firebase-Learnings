@@ -11,6 +11,8 @@ import {
   onSnapshot,
   query,
   where,
+  orderBy,
+  serverTimestamp,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -84,6 +86,7 @@ addBook.addEventListener("submit", async (e) => {
     await addDoc(colRef, {
       title: addBook.title.value,
       author: addBook.author.value,
+      createdAt: serverTimestamp(),
     });
     addBook.reset();
   } catch (err) {
@@ -109,3 +112,17 @@ deleteBook.addEventListener("submit", async (e) => {
 const q = query(colRef, where("author", "==", "Ankur Warikoo"));
 
 fetchBooks(q);
+
+// Ordering Data & Timestamps (By default Ascending order)
+const order = query(
+  colRef,
+  where("author", "==", "Ankur Warikoo"),
+  orderBy("title", "desc")
+);
+
+fetchBooks(order);
+
+// Ordering with timestamp
+const orderCreatedAt = query(colRef, orderBy("createdAt"));
+
+fetchBooks(orderCreatedAt);
