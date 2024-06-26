@@ -8,6 +8,7 @@ import {
   addDoc,
   deleteDoc,
   doc,
+  onSnapshot,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -39,13 +40,29 @@ const colRef = collection(db, "books");
 //   })
 //   .catch((err) => console.log(err.message));
 
-const fetchBooks = async () => {
+//Async/ await
+
+// const fetchBooks = async () => {
+//   try {
+//     const snapshot = await getDocs(colRef);
+//     // console.log(snapshot.docs);
+//     let books = [];
+//     snapshot.docs.forEach((doc) => books.push({ ...doc.data(), id: doc.id }));
+//     console.log(books);
+//   } catch (err) {
+//     console.log(err.message);
+//   }
+// };
+
+// fetchBooks();
+
+const fetchBooks = () => {
   try {
-    const snapshot = await getDocs(colRef);
-    // console.log(snapshot.docs);
-    let books = [];
-    snapshot.docs.forEach((doc) => books.push({ ...doc.data(), id: doc.id }));
-    console.log(books);
+    onSnapshot(colRef, (snapshot) => {
+      let books = [];
+      snapshot.docs.forEach((doc) => books.push({ ...doc.data(), id: doc.id }));
+      console.log(books);
+    });
   } catch (err) {
     console.log(err.message);
   }
