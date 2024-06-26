@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learning</title>
+  </head>
+  <body>
+    <section
+      class="flex justify-center items-center h-screen bg-slate-200 font-mono"
+    >
+      <div
+        class="books bg-zinc-300 h-auto w-4/6 rounded-2xl p-12 border-2 border-red-200 space-y-5"
+      >
+        <h2 class="text-3xl font-bold text-center">Special Books</h2>
+
+        <form class="add">
+          <label for="title" class="text-xl font-semibold">Title</label><br />
+          <input
+            type="text"
+            name="title"
+            id="title"
+            class="mt-2 mb-2 w-full p-1 text-xl rounded-md border-2 pl-2 pr-2 text-gray-600 border-red-300"
+            required
+          /><br />
+          <label for="author" class="text-xl font-semibold">Author</label><br />
+          <input
+            type="text"
+            name="author"
+            id="author"
+            class="mt-2 mb-2 w-full p-1 text-xl rounded-md border-2 pl-2 pr-2 text-gray-600 border-red-300"
+            required
+          /><br /><br />
+
+          <button
+            class="bg-violet-600 p-2 w-full rounded-md text-white font-bold text-md transition active:translate-y-0.5"
+          >
+            Add a new Book
+          </button>
+        </form>
+
+        <form class="delete">
+          <label for="id" class="text-xl font-semibold">Document ID:</label
+          ><br />
+          <input
+            type="text"
+            name="id"
+            id="id"
+            class="mt-2 mb-2 w-full p-1 text-xl rounded-md border-2 pl-2 pr-2 text-gray-600 border-red-300"
+            required
+          /><br /><br />
+
+          <button
+            class="bg-violet-600 p-2 w-full rounded-md text-white font-bold text-md transition active:translate-y-0.5"
+          >
+            Delete a Book
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <script src="./bundle.js"></script>
+  </body>
+</html>
