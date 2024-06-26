@@ -17,6 +17,8 @@ import {
   updateDoc,
 } from "firebase/firestore";
 
+import { getAuth } from "firebase/auth";
+
 const firebaseConfig = {
   apiKey: "AIzaSyDC964Tn-wWBdGobfARaAmcRzUhf67qLE4",
   authDomain: "learning-e2d24.firebaseapp.com",
@@ -31,6 +33,7 @@ initializeApp(firebaseConfig);
 
 // init services
 const db = getFirestore();
+const auth = getAuth();
 
 // Collection Reference
 const colRef = collection(db, "books");
