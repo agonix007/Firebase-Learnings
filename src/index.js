@@ -9,6 +9,8 @@ import {
   deleteDoc,
   doc,
   onSnapshot,
+  query,
+  where,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -56,9 +58,9 @@ const colRef = collection(db, "books");
 
 // fetchBooks();
 
-const fetchBooks = () => {
+const fetchBooks = (ref) => {
   try {
-    onSnapshot(colRef, (snapshot) => {
+    onSnapshot(ref, (snapshot) => {
       let books = [];
       snapshot.docs.forEach((doc) => books.push({ ...doc.data(), id: doc.id }));
       console.log(books);
@@ -68,7 +70,7 @@ const fetchBooks = () => {
   }
 };
 
-fetchBooks();
+fetchBooks(colRef);
 
 // Element selection
 const addBook = document.querySelector(".add");
@@ -102,3 +104,8 @@ deleteBook.addEventListener("submit", async (e) => {
     console.log(err.message);
   }
 });
+
+// Queries
+const q = query(colRef, where("author", "==", "Ankur Warikoo"));
+
+fetchBooks(q);
