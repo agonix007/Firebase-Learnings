@@ -13,6 +13,7 @@ import {
   where,
   orderBy,
   serverTimestamp,
+  getDoc,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -72,7 +73,7 @@ const fetchBooks = (ref) => {
   }
 };
 
-fetchBooks(colRef);
+// fetchBooks(colRef);
 
 // Element selection
 const addBook = document.querySelector(".add");
@@ -111,7 +112,7 @@ deleteBook.addEventListener("submit", async (e) => {
 // Queries
 const q = query(colRef, where("author", "==", "Ankur Warikoo"));
 
-fetchBooks(q);
+// fetchBooks(q);
 
 // Ordering Data & Timestamps (By default Ascending order)
 const order = query(
@@ -120,9 +121,36 @@ const order = query(
   orderBy("title", "desc")
 );
 
-fetchBooks(order);
+// fetchBooks(order);
 
 // Ordering with timestamp
 const orderCreatedAt = query(colRef, orderBy("createdAt"));
 
 fetchBooks(orderCreatedAt);
+
+// Get a single document
+const docRef = doc(db, "books", "iet9X9EHCG4GiTiw5hqe");
+
+// const fetchSingleDocument = async () => {
+//   try {
+//     const doc = await getDoc(docRef);
+//     console.log(doc.data(), doc.id);
+//   } catch (err) {
+//     console.log(err.message);
+//   }
+// };
+
+// fetchSingleDocument();
+
+// Real Time Listener
+const fetchSingleDocument = () => {
+  try {
+    onSnapshot(docRef, (doc) => {
+      console.log(doc.data(), doc.id);
+    });
+  } catch (err) {
+    console.log(err.message);
+  }
+};
+
+fetchSingleDocument();
