@@ -17,7 +17,7 @@ import {
   updateDoc,
 } from "firebase/firestore";
 
-import { getAuth } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDC964Tn-wWBdGobfARaAmcRzUhf67qLE4",
@@ -171,6 +171,23 @@ updateBook.addEventListener("submit", async (e) => {
       title: "Make Epic Money",
     });
     updateBook.reset();
+  } catch (err) {
+    console.log(err.message);
+  }
+});
+
+// Signing users up
+const signupForm = document.querySelector(".signup");
+signupForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const email = signupForm.email.value;
+  const password = signupForm.password.value;
+
+  try {
+    const cred = await createUserWithEmailAndPassword(auth, email, password);
+    console.log("User Created: ", cred.user);
+    signupForm.reset();
   } catch (err) {
     console.log(err.message);
   }

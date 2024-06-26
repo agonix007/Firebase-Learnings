@@ -7,10 +7,46 @@
   </head>
   <body>
     <section
-      class="flex justify-center items-center h-screen bg-slate-100 font-mono"
+      class="flex flex-col justify-center items-center h-auto bg-slate-100 font-mono space-y-14"
     >
+      <!-- Sign Up -->
       <div
-        class="books bg-zinc-300 h-auto w-4/6 rounded-2xl p-12 border-2 border-red-200 space-y-5 md:w-2/6"
+        class="books bg-zinc-300 h-auto w-5/6 rounded-2xl mt-16 p-12 border-2 border-red-200 space-y-5 md:w-2/6"
+      >
+        <h2 class="text-3xl font-bold text-center">Sign Up</h2>
+
+        <form class="signup">
+          <label for="email" class="text-xl font-semibold">Email</label><br />
+          <input
+            type="email"
+            name="email"
+            id="email"
+            class="mt-2 mb-2 w-full p-1 text-xl rounded-md border-2 pl-2 pr-2 text-gray-600 border-red-300 placeholder:text-gray-300"
+            placeholder="johndoe123@gmail.com"
+            required
+          /><br />
+          <label for="password" class="text-xl font-semibold">Password</label
+          ><br />
+          <input
+            type="password"
+            name="password"
+            id="password"
+            class="mt-2 mb-2 w-full p-1 text-xl rounded-md border-2 pl-2 pr-2 text-gray-600 border-red-300 placeholder:text-gray-300"
+            placeholder="********"
+            required
+          /><br /><br />
+
+          <button
+            class="bg-violet-600 p-2 w-full rounded-md text-white font-bold text-md transition active:translate-y-0.5"
+          >
+            Sign Up
+          </button>
+        </form>
+      </div>
+
+      <!-- Book section -->
+      <div
+        class="books bg-zinc-300 h-auto w-5/6 rounded-2xl p-12 border-2 border-red-200 space-y-5 md:w-2/6"
       >
         <h2 class="text-3xl font-bold text-center">Special Books</h2>
 
