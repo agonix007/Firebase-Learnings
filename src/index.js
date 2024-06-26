@@ -71,9 +71,11 @@ const colRef = collection(db, "books");
 
 // fetchBooks();
 
+let unsubCol, unsubDoc, unsubAuth;
+
 const fetchBooks = (ref) => {
   try {
-    onSnapshot(ref, (snapshot) => {
+    unsubCol = onSnapshot(ref, (snapshot) => {
       let books = [];
       snapshot.docs.forEach((doc) => books.push({ ...doc.data(), id: doc.id }));
       console.log(books);
@@ -156,7 +158,7 @@ const docRef = doc(db, "books", "iet9X9EHCG4GiTiw5hqe");
 // Real Time Listener
 const fetchSingleDocument = () => {
   try {
-    onSnapshot(docRef, (doc) => {
+    unsubDoc = onSnapshot(docRef, (doc) => {
       console.log(doc.data(), doc.id);
     });
   } catch (err) {
@@ -164,7 +166,7 @@ const fetchSingleDocument = () => {
   }
 };
 
-// fetchSingleDocument();
+fetchSingleDocument();
 
 // Updating data
 updateBook.addEventListener("submit", async (e) => {
@@ -229,6 +231,21 @@ loginForm.addEventListener("submit", async (e) => {
 });
 
 // Subscribing To Auth Changes
-onAuthStateChanged(auth, (user) => {
+unsubAuth = onAuthStateChanged(auth, (user) => {
   console.log("User Status Changed: ", user);
+});
+
+// Unsubscribing from db/Auth Changes
+const unsubBtn = document.querySelector(".unsub");
+unsubBtn.addEventListener("click", async (e) => {
+  e.preventDefault();
+
+  try {
+    console.log("Unsubscribing");
+    unsubCol();
+    unsubDoc();
+    unsubAuth();
+  } catch (err) {
+    console.error(err.message);
+  }
 });
