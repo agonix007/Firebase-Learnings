@@ -22,6 +22,7 @@ import {
   createUserWithEmailAndPassword,
   signOut,
   signInWithEmailAndPassword,
+  onAuthStateChanged,
 } from "firebase/auth";
 
 const firebaseConfig = {
@@ -191,7 +192,7 @@ signupForm.addEventListener("submit", async (e) => {
 
   try {
     const cred = await createUserWithEmailAndPassword(auth, email, password);
-    console.log("User Created: ", cred.user);
+    // console.log("User Created: ", cred.user);
     signupForm.reset();
   } catch (err) {
     console.error(err.message);
@@ -205,7 +206,7 @@ logoutBtn.addEventListener("click", async (e) => {
 
   try {
     await signOut(auth);
-    console.log("The user Signed Out");
+    // console.log("The user Signed Out");
   } catch (err) {
     console.error(err.message);
   }
@@ -220,9 +221,14 @@ loginForm.addEventListener("submit", async (e) => {
 
   try {
     const cred = await signInWithEmailAndPassword(auth, email, password);
-    console.log("User Logged In: ", cred.user);
+    // console.log("User Logged In: ", cred.user);
     loginForm.reset();
   } catch (err) {
     console.error(err.message);
   }
+});
+
+// Subscribing To Auth Changes
+onAuthStateChanged(auth, (user) => {
+  console.log("User Status Changed: ", user);
 });
