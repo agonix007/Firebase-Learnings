@@ -14,6 +14,7 @@
       >
         <h2 class="text-3xl font-bold text-center">Special Books</h2>
 
+        <!-- Adding a book -->
         <form class="add">
           <label for="title" class="text-xl font-semibold">Title</label><br />
           <input
@@ -39,6 +40,7 @@
           </button>
         </form>
 
+        <!-- Deleting a book -->
         <form class="delete">
           <label for="id" class="text-xl font-semibold">Document ID:</label
           ><br />
@@ -54,6 +56,25 @@
             class="bg-violet-600 p-2 w-full rounded-md text-white font-bold text-md transition active:translate-y-0.5"
           >
             Delete a Book
+          </button>
+        </form>
+
+        <!-- Updating a book -->
+        <form class="update">
+          <label for="d_id" class="text-xl font-semibold">Document ID:</label
+          ><br />
+          <input
+            type="text"
+            name="id"
+            id="d_id"
+            class="mt-2 mb-2 w-full p-1 text-xl rounded-md border-2 pl-2 pr-2 text-gray-600 border-red-300"
+            required
+          /><br /><br />
+
+          <button
+            class="bg-violet-600 p-2 w-full rounded-md text-white font-bold text-md transition active:translate-y-0.5"
+          >
+            Update a Book
           </button>
         </form>
       </div>

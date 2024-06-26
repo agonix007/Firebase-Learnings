@@ -14,6 +14,7 @@ import {
   orderBy,
   serverTimestamp,
   getDoc,
+  updateDoc,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -78,6 +79,7 @@ const fetchBooks = (ref) => {
 // Element selection
 const addBook = document.querySelector(".add");
 const deleteBook = document.querySelector(".delete");
+const updateBook = document.querySelector(".update");
 
 // Adding data
 addBook.addEventListener("submit", async (e) => {
@@ -153,4 +155,20 @@ const fetchSingleDocument = () => {
   }
 };
 
-fetchSingleDocument();
+// fetchSingleDocument();
+
+// Updating data
+updateBook.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const docRef = doc(db, "books", updateBook.id.value);
+
+  try {
+    await updateDoc(docRef, {
+      title: "Make Epic Money",
+    });
+    updateBook.reset();
+  } catch (err) {
+    console.log(err.message);
+  }
+});
