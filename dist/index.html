@@ -44,6 +44,46 @@
         </form>
       </div>
 
+      <!-- Log In -->
+      <div
+        class="books bg-zinc-300 h-auto w-5/6 rounded-2xl mt-16 p-12 border-2 border-red-200 space-y-5 md:w-2/6"
+      >
+        <h2 class="text-3xl font-bold text-center">LogIn & LogOut</h2>
+
+        <form class="login">
+          <label for="email1" class="text-xl font-semibold">Email</label><br />
+          <input
+            type="email"
+            name="email"
+            id="email1"
+            class="mt-2 mb-2 w-full p-1 text-xl rounded-md border-2 pl-2 pr-2 text-gray-600 border-red-300 placeholder:text-gray-300"
+            placeholder="johndoe123@gmail.com"
+            required
+          /><br />
+          <label for="password1" class="text-xl font-semibold">Password</label
+          ><br />
+          <input
+            type="password"
+            name="password"
+            id="password1"
+            class="mt-2 mb-2 w-full p-1 text-xl rounded-md border-2 pl-2 pr-2 text-gray-600 border-red-300 placeholder:text-gray-300"
+            placeholder="********"
+            required
+          /><br /><br />
+
+          <button
+            class="bg-violet-600 p-2 w-full rounded-md text-white font-bold text-md transition active:translate-y-0.5"
+          >
+            LogIn
+          </button>
+        </form>
+        <button
+          class="logout bg-violet-600 p-2 w-full rounded-md text-white font-bold text-md transition active:translate-y-0.5"
+        >
+          LogOut
+        </button>
+      </div>
+
       <!-- Book section -->
       <div
         class="books bg-zinc-300 h-auto w-5/6 rounded-2xl p-12 border-2 border-red-200 space-y-5 md:w-2/6"

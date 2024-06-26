@@ -17,7 +17,12 @@ import {
   updateDoc,
 } from "firebase/firestore";
 
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signOut,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDC964Tn-wWBdGobfARaAmcRzUhf67qLE4",
@@ -73,7 +78,7 @@ const fetchBooks = (ref) => {
       console.log(books);
     });
   } catch (err) {
-    console.log(err.message);
+    console.error(err.message);
   }
 };
 
@@ -96,7 +101,7 @@ addBook.addEventListener("submit", async (e) => {
     });
     addBook.reset();
   } catch (err) {
-    console.log(err.message);
+    console.error(err.message);
   }
 });
 
@@ -110,7 +115,7 @@ deleteBook.addEventListener("submit", async (e) => {
     await deleteDoc(docRef);
     deleteBook.reset();
   } catch (err) {
-    console.log(err.message);
+    console.error(err.message);
   }
 });
 
@@ -154,7 +159,7 @@ const fetchSingleDocument = () => {
       console.log(doc.data(), doc.id);
     });
   } catch (err) {
-    console.log(err.message);
+    console.error(err.message);
   }
 };
 
@@ -172,7 +177,7 @@ updateBook.addEventListener("submit", async (e) => {
     });
     updateBook.reset();
   } catch (err) {
-    console.log(err.message);
+    console.error(err.message);
   }
 });
 
@@ -189,6 +194,35 @@ signupForm.addEventListener("submit", async (e) => {
     console.log("User Created: ", cred.user);
     signupForm.reset();
   } catch (err) {
-    console.log(err.message);
+    console.error(err.message);
+  }
+});
+
+// LogIn & LogOut
+const logoutBtn = document.querySelector(".logout");
+logoutBtn.addEventListener("click", async (e) => {
+  e.preventDefault();
+
+  try {
+    await signOut(auth);
+    console.log("The user Signed Out");
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+const loginForm = document.querySelector(".login");
+loginForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const email = loginForm.email.value;
+  const password = loginForm.password.value;
+
+  try {
+    const cred = await signInWithEmailAndPassword(auth, email, password);
+    console.log("User Logged In: ", cred.user);
+    loginForm.reset();
+  } catch (err) {
+    console.error(err.message);
   }
 });
